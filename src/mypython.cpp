@@ -1,3 +1,8 @@
+/*
+    Team 27
+    Code adapted from https://craftinginterpreters.com/contents.html
+*/
+
 #include "interpreter.h"
 
 int main(int argc, char *argv[])

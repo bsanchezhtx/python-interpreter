@@ -6,10 +6,6 @@ void Interpreter::interpret(std::string source)
 {
     Scanner scanner(source);
     std::vector<Token> tokens = scanner.scanTokens();
-    for (auto& token : tokens)
-    {
-        std::cout << tokenToString(token) << std::endl;
-    }
 }
 
 Interpreter::Interpreter()

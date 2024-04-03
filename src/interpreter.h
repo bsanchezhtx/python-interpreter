@@ -13,6 +13,4 @@ public:
     Interpreter();
     void interpretFile(char *fileName);
     void interactivePrompt();
-    // void error(int line, std::string message);
-    // void report(int line, std::string where, std::string message);
 };

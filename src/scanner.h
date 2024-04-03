@@ -19,13 +19,10 @@ private:
     void addToken(TokenType type, std::string literal);
     bool match(char expected);
     char peek();
-    void string();
-    bool isDigit(char c);
-    void number();
     char peekNext();
+    void number();
+    void string();
     void identifier();
-    bool isAlpha(char c);
-    bool isAlphaNumeric(char c);
 public:
     Scanner(std::string source);
     std::vector<Token> scanTokens();
