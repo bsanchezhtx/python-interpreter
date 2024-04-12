@@ -1,10 +1,14 @@
 #pragma once
-#include "enum.h"
-#include "token.h"
-#include "interpreter.h"
+
+#include "token.hpp"
+#include "interpreter.hpp"
 
 class Scanner
 {
+public:
+    Scanner(std::string source);
+    std::vector<Token> scanTokens();
+
 private:
     std::string source;
     std::vector<Token> tokens;
@@ -15,15 +19,12 @@ private:
     bool isAtEnd();
     void scanToken();
     char advance();
+    bool match(char expected);
     void addToken(TokenType type);
     void addToken(TokenType type, std::string literal);
-    bool match(char expected);
     char peek();
     char peekNext();
     void number();
     void string();
     void identifier();
-public:
-    Scanner(std::string source);
-    std::vector<Token> scanTokens();
 };

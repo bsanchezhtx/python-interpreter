@@ -1,4 +1,7 @@
-#include "scanner.h"
+#include <unordered_map>
+#include <iostream>
+
+#include "scanner.hpp"
 
 std::unordered_map<std::string, TokenType> keywords =
     {
@@ -13,6 +16,25 @@ std::unordered_map<std::string, TokenType> keywords =
         {"None", TokenType::NONE},
         {"print", TokenType::PRINT},
         {"return", TokenType::RETURN}};
+
+Scanner::Scanner(std::string source)
+{
+    this->source = source;
+}
+
+std::vector<Token> Scanner::scanTokens()
+{
+    while (!isAtEnd())
+    {
+        start = current;
+        scanToken();
+    }
+
+    tokens.push_back(Token(TokenType::EoF, "", "", line));
+
+    return tokens;
+}
+
 
 bool Scanner::isAtEnd()
 {
@@ -148,6 +170,7 @@ void Scanner::scanToken()
         break;
 
     // whitespace and carriage returns
+    // TODO: Handle Indentation for nested statements
     case ' ':
     case '\r':
     case '\t':
@@ -193,20 +216,3 @@ void Scanner::scanToken()
     }
 }
 
-std::vector<Token> Scanner::scanTokens()
-{
-    while (!isAtEnd())
-    {
-        start = current;
-        scanToken();
-    }
-
-    tokens.push_back(Token(TokenType::EoF, "", "", line));
-
-    return tokens;
-}
-
-Scanner::Scanner(std::string source)
-{
-    this->source = source;
-}

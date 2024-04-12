@@ -1,12 +1,7 @@
 #pragma once
-#include <iostream>
-#include <fstream>
-#include <sstream>
+
+#include <variant>
 #include <string>
-#include <vector>
-#include <list>
-#include <map>
-#include <unordered_map>
 
 enum class TokenType
 {
@@ -20,6 +15,8 @@ enum class TokenType
     STAR,
     COLON,
     HASH,
+    INDENT,
+    DEDENT,
 
     NOT,
     EQUAL,
@@ -48,4 +45,17 @@ enum class TokenType
     EoF
 };
 
-std::string tokenTypeToString(TokenType token);
+class Token
+{
+public:
+    Token(TokenType type, std::string lexeme, std::string literal, int line);
+    Token(TokenType type, std::string lexeme, int literal, int line);
+    Token(TokenType type, std::string lexeme, int line);
+    std::string toString();
+
+private:
+    TokenType type;
+    std::string lexeme;
+    std::variant<std::string, int> literal;
+    int line;
+};

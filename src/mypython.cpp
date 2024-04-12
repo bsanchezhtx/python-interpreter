@@ -3,7 +3,9 @@
     Code adapted from https://craftinginterpreters.com/contents.html
 */
 
-#include "interpreter.h"
+#include <iostream>
+
+#include "interpreter.hpp"
 
 int main(int argc, char *argv[])
 {
