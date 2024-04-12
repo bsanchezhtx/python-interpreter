@@ -22,6 +22,7 @@ private:
     bool match(char expected);
     void addToken(TokenType type);
     void addToken(TokenType type, std::string literal);
+    void addToken(TokenType type, int literal);
     char peek();
     char peekNext();
     void number();

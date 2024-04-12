@@ -16,6 +16,7 @@ enum class TokenType
     STAR,
     COLON,
     HASH,
+    NEWLINE,
     INDENT,
     DEDENT,
 
@@ -54,6 +55,7 @@ public:
     Token(TokenType type, std::string lexeme, int line);
     std::string toString();
     std::string getLexeme();
+    TokenType getType();
 
 private:
     TokenType type;

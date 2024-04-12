@@ -98,7 +98,7 @@ void Scanner::number()
         advance();
 
     // currently, only working with integers, so just add the integer token
-    addToken(TokenType::INTEGER, source.substr(start, current - start));
+    addToken(TokenType::INTEGER, std::stoi(source.substr(start, current - start)));
 }
 
 void Scanner::identifier()
@@ -126,6 +126,12 @@ void Scanner::addToken(TokenType type)
 }
 
 void Scanner::addToken(TokenType type, std::string literal)
+{
+    std::string text = source.substr(start, current - start);
+    tokens.push_back(Token(type, text, literal, line));
+}
+
+void Scanner::addToken(TokenType type, int literal)
 {
     std::string text = source.substr(start, current - start);
     tokens.push_back(Token(type, text, literal, line));
@@ -176,8 +182,9 @@ void Scanner::scanToken()
     case '\t':
         break;
 
-    // newlines
+    // newlines mark the end of statements
     case '\n':
+        addToken(TokenType::NEWLINE);
         line++;
         break;
 

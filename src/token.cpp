@@ -28,6 +28,8 @@ std::string tokenTypeToString(const TokenType &token)
         return "INDENT";
     case TokenType::DEDENT:
         return "DEDENT";
+    case TokenType::NEWLINE:
+        return "NEWLINE";
         
 
     case TokenType::NOT:
@@ -115,4 +117,9 @@ std::string Token::toString()
 std::string Token::getLexeme()
 {
     return lexeme;
+}
+
+TokenType Token::getType()
+{
+    return type;
 }

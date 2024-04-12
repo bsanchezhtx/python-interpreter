@@ -53,6 +53,8 @@ std::vector<StmtPtrVariant> parse(const std::vector<Token>& tokens)
     std::vector<StmtPtrVariant> statements = parser.parse();
 
     PrettyPrinter::toString(statements);
+
+    return statements;
 }
 
 
