@@ -88,7 +88,7 @@ Token::Token(TokenType type, std::string lexeme, std::string literal, int line)
 {
     this->type = type;
     this->lexeme = lexeme;
-    this->literal = literal;
+    this->literal.assign(literal);
     this->line = line;
 }
 
@@ -96,7 +96,7 @@ Token::Token(TokenType type, std::string lexeme, int literal, int line)
 {
     this->type = type;
     this->lexeme = lexeme;
-    this->literal = literal;
+    this->literal.assign(literal);
     this->line = line;
 }
 
@@ -110,4 +110,9 @@ Token::Token(TokenType type, std::string lexeme, int line)
 std::string Token::toString()
 {
     return tokenTypeToString(type) + " " + lexeme;
+}
+
+std::string Token::getLexeme()
+{
+    return lexeme;
 }

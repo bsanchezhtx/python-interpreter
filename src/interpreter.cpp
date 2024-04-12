@@ -5,6 +5,8 @@
 
 #include "interpreter.hpp"
 #include "scanner.hpp"
+#include "parser.hpp"
+#include "prettyprinter.hpp"
 
 Interpreter::Interpreter()
 {
@@ -45,11 +47,16 @@ std::vector<Token> Interpreter::scan(const std::string& source)
     return tokens;
 }
 
+std::vector<StmtPtrVariant> parse(const std::vector<Token>& tokens)
+{
+    Parser parser(tokens);
+    std::vector<StmtPtrVariant> statements = parser.parse();
+
+    PrettyPrinter::toString(statements);
+}
+
+
 void Interpreter::interpret(const std::string& source)
 {
     std::vector<Token> tokens = scan(source);
-    for (auto val: tokens)
-    {
-        std::cout << val.toString() << std::endl;
-    }
 }

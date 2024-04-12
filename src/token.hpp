@@ -1,7 +1,8 @@
 #pragma once
 
-#include <variant>
 #include <string>
+
+#include "literal.hpp"
 
 enum class TokenType
 {
@@ -52,10 +53,11 @@ public:
     Token(TokenType type, std::string lexeme, int literal, int line);
     Token(TokenType type, std::string lexeme, int line);
     std::string toString();
+    std::string getLexeme();
 
 private:
     TokenType type;
     std::string lexeme;
-    std::variant<std::string, int> literal;
+    Literal literal;
     int line;
 };
